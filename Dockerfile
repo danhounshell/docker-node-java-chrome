@@ -27,6 +27,4 @@ RUN \
     apt-get clean  && \
     rm -rf /var/lib/apt/lists/* google-chrome-stable_current_amd64.deb
 
-# Allow root to execute Google Chrome by replacing launch script
-ADD google-chrome-launcher /usr/bin/google-chrome
 
