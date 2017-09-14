@@ -27,4 +27,12 @@ RUN \
     apt-get clean  && \
     rm -rf /var/lib/apt/lists/* google-chrome-stable_current_amd64.deb
 
+#install
+RUN apt-get update && \
+    apt-get install -y jq bash curl && \
+    apt-get clean
 
+# Fix bug https://github.com/npm/npm/issues/9863
+RUN cd $(npm root -g)/npm \
+  && npm install fs-extra \
+  && sed -i -e s/graceful-fs/fs-extra/ -e s/fs\.rename/fs.move/ ./lib/utils/rename.js
