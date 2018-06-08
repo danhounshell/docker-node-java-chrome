@@ -1,4 +1,4 @@
-FROM node:6.11.5
+FROM node:8.9.4
 MAINTAINER LeanKit - QA - Sherlock
 
 # Install jdk1.8
