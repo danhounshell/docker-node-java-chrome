@@ -1,4 +1,4 @@
-FROM node:6.11.5
+FROM node:8.9.4
 MAINTAINER LeanKit - QA - Sherlock
 
 # Install jdk1.8
@@ -15,7 +15,7 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
 # chrome
 RUN \
-    apt-get -y install unzip libglib2.0 libnss3-dev libxtst6 libxss1 libgconf-2-4 libfontconfig1 libpango1.0-0 libxcursor1 libxcomposite1 libasound2 libxdamage1 libxrandr2 libcups2 libgtk-3-0 wget libappindicator1 lsb-release libcurl3 xdg-utils libexif12 xvfb fonts-noto fonts-liberation && \
+    apt-get -y install unzip libglib2.0 libnss3-dev libxtst6 libxss1 libgconf-2-4 libfontconfig1 libpango1.0-0 libxcursor1 libxcomposite1 libasound2 libxdamage1 libxrandr2 libcups2 libgtk-3-0 wget libappindicator3-1 lsb-release libcurl3 xdg-utils libexif12 xvfb fonts-noto fonts-liberation && \
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
     dpkg -i google-chrome-stable_current_amd64.deb && \
     apt-get -f -y install && \
@@ -32,7 +32,3 @@ RUN apt-get update && \
     apt-get install -y jq bash curl && \
     apt-get clean
 
-# Fix bug https://github.com/npm/npm/issues/9863
-RUN cd $(npm root -g)/npm \
-  && npm install fs-extra \
-  && sed -i -e s/graceful-fs/fs-extra/ -e s/fs\.rename/fs.move/ ./lib/utils/rename.js
