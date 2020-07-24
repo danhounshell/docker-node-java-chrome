@@ -1,2 +1,2 @@
 # docker-node-java-chrome
-Docker image based on node 8.9.4 with jdk 8 and stable chrome
+Docker image based on node 10.22 with jdk 14 and stable chrome
